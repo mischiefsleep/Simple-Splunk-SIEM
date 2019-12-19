@@ -1,8 +1,8 @@
-		Set up CentOS or Ubuntu first (use yum with CentOS and apt with Ubuntu)
+#Set up CentOS or Ubuntu first (use yum with CentOS and apt with Ubuntu)
 
 THIS LAB IS UNDER DEVELOPMENT!!
 
-					CentOS
+##CentOS
 1. Run
 	`sudo yum update`
 
@@ -14,7 +14,7 @@ THIS LAB IS UNDER DEVELOPMENT!!
 	 systemctl start docker \
 	 docker run hello-world`
  
-					Ubuntu
+##Ubuntu
 1. Run 
 	`sudo apt update && sudo apt upgrade -y`
 
@@ -26,23 +26,23 @@ THIS LAB IS UNDER DEVELOPMENT!!
  
 Note: This install will work on any *nix system granted you have docker installed and running, and you replace the first location after the -v flag with the location of your log files.
 
-					Install Portainer
+##Install Portainer
 
 `sudo docker run -d --name portainer-01 --restart unless-stopped -p 9000:9000 -v /var/run/docker.sock:/var/run/docker.sock -v portainer_data:/data portainer/portainer`
 
-(CentOS Firewall Config Only)
+###(CentOS Firewall Config Only)
 
 	`sudo firewall-cmd --permanent --add-port=9000/tcp`
 	`sudo firewall-cmd reload`
 
-(Ubuntu Firewall Config Only)
+###(Ubuntu Firewall Config Only)
 
 	`sudo ufw allow 9000 && \
 	 sudo systemctl restart ufw`
 
 Log into portainer with browser url http://localhost:9000
 
-					Build Splunk Container
+##Build Splunk Container
 
 Primary Splunk: Keep in mind when running these commands to change the password.
 
@@ -50,7 +50,7 @@ Primary Splunk: Keep in mind when running these commands to change the password.
 
 If you would like to run with my pre-set SSH Connection and Commands Run Dashboard I have created you can do so by changing the last variable in the command "splunk/splunk:latest" to "ohlittlebrain/centos:Splunk" or "ohlittlebrain/ubuntu:Splunk"
 
-				For Collection of a Single Host
+##For Collection of a Single Host
 
 Log into Splunk with browser url http://localhost:8000
 
@@ -61,7 +61,7 @@ Log into Splunk with browser url http://localhost:8000
 5. Click the Next button, and then the Review button leaving the default settings
 6. Finally click Submit and on the next page start searching!
 
-				For Collection of Multiple Hosts
+##For Collection of Multiple Hosts
 
 Follow all steps above to get docker running on the host, and then instead of a full splunk we will just install a forwarder. 
 
@@ -69,7 +69,7 @@ Splunk Forwarder: Keep in mind when running these commands to change the passwor
 
 `sudo docker run -d -p 9997:997 -e 'SPLUNK_START_ARGS=--accept-license' -e 'SPLUNK_PASSWORD=<password>' --name splunk_forwarder --hostname splunk_forwarder -v /var/log:/var/log/HOST splunk/universalforwarder:latest`
 
-					Portainer Set Up
+##Portainer Set Up
 
 1. Open up Portainer at http://localhost:9000 
 2. Go to containers, and click on the splunk container
@@ -84,7 +84,7 @@ Splunk Forwarder: Keep in mind when running these commands to change the passwor
 	`sudo chmod -R 755 /var/log/HOST`
 This will change the permissions to allow everything in the directory and all it's children to be able to be readable and writable.
 
-					CLI Set Up
+##CLI Set Up
 
 1. Run the Following Commands
 	`sudo docker exec -it splunk_forwarder /bin/bash && \	
@@ -97,7 +97,7 @@ This will change the permissions to allow everything in the directory and all it
 	`sudo chmod -R 755 /var/log/HOST`
 This will change the permissions to allow everything in the directory and all it's children to be able to be readable and writable.
 
-			Splunk Forwarder Set Up Without Docker
+##Splunk Forwarder Set Up Without Docker
 
 
 
