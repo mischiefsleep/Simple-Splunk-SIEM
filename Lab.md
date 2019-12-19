@@ -117,7 +117,7 @@ This will change the permissions to allow everything in the directory and all it
 
 Note: Use this set up on other hosts to send logs to your main Splunk instance!  
 
-1. Download splunk universal forwarder from the following link, use .rpm for CentOS and .deb for Ubuntu. Alternatively you can download the .tar and unzip and copy files to /opt. https://www.splunk.com/en_us/download/universal-forwarder.html
+1. Download splunk universal forwarder from the following link, use .rpm for CentOS and .deb for Ubuntu. Alternatively you can download the .tar and unzip and copy files to /opt.<br/> https://www.splunk.com/en_us/download/universal-forwarder.html
 2. Once you have the universal forwarder installed
 ```
 cd /opt/splunkforwarder
