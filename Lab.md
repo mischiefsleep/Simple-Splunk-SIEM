@@ -17,48 +17,48 @@ THIS LAB IS UNDER DEVELOPMENT!!
 ```
 
 ## Ubuntu
-1. Run 
+1. Run   
 ```
 sudo apt update && sudo apt upgrade -y
 ```
 
-2. Install Docker
+2. Install Docker  
 ```
-	 sudo apt install containerd.io && \
-	 sudo apt install docker-ce && \
-	 sudo service docker start && \
-	 sudo docker run hello-world`
+sudo apt install containerd.io && \
+sudo apt install docker-ce && \
+sudo service docker start && \
+sudo docker run hello-world
 ```
 Note: This install will work on any *nix system granted you have docker installed and running, and you replace the first location after the -v flag with the location of your log files.
 
 ## Install Portainer
 
 ```
-	sudo docker run -d --name portainer-01 --restart unless-stopped -p 9000:9000 -v /var/run/docker.sock:/var/run/docker.sock -v portainer_data:/data portainer/portainer`
+sudo docker run -d --name portainer-01 --restart unless-stopped -p 9000:9000 -v /var/run/docker.sock:/var/run/docker.sock -v portainer_data:/data portainer/portainer
 ```
 ### (CentOS Firewall Config Only)
 ```
-	sudo firewall-cmd --permanent --add-port=9000/tcp
-	sudo firewall-cmd reload
+sudo firewall-cmd --permanent --add-port=9000/tcp
+sudo firewall-cmd reload
 ```
 ### (Ubuntu Firewall Config Only)
 ```
-	 sudo ufw allow 9000 && \
-	 sudo systemctl restart ufw
+sudo ufw allow 9000 && \
+sudo systemctl restart ufw
 ```
-Log into portainer with browser url http://localhost:9000
+Log into portainer with browser url http://localhost:9000  
 
 ## Build Splunk Container
 
-Primary Splunk: Keep in mind when running these commands to change the password.
+Primary Splunk: Keep in mind when running these commands to change the password.  
 ```
 sudo docker run -d -p 8000:8000 -e 'SPLUNK_START_ARGS=--accept-license' -e 'SPLUNK_PASSWORD=<password>' --name splunk --hostname splunk -v /var/log:/var/log/HOST splunk/splunk:latest`
 ```
-If you would like to run with my pre-set SSH Connection and Commands Run Dashboard I have created you can do so by changing the last variable in the command "splunk/splunk:latest" to "ohlittlebrain/centos:Splunk" or "ohlittlebrain/ubuntu:Splunk"
+If you would like to run with my pre-set SSH Connection and Commands Run Dashboard I have created you can do so by changing the last variable in the command "splunk/splunk:latest" to "ohlittlebrain/centos:Splunk" or "ohlittlebrain/ubuntu:Splunk"  
 
 ## For Collection of a Single Host
 
-Log into Splunk with browser url http://localhost:8000
+Log into Splunk with browser url http://localhost:8000  
 
 1. Once Logged in, click on Add Data.
 2. Scroll down and click Monitor
@@ -69,9 +69,9 @@ Log into Splunk with browser url http://localhost:8000
 
 ## For Collection of Multiple Hosts
 
-Follow all steps above to get docker running on the host, and then instead of a full splunk we will just install a forwarder. 
+Follow all steps above to get docker running on the host, and then instead of a full splunk we will just install a forwarder.   
 
-Splunk Forwarder: Keep in mind when running these commands to change the password.
+Splunk Forwarder: Keep in mind when running these commands to change the password.  
 ```
 sudo docker run -d -p 9997:997 -e 'SPLUNK_START_ARGS=--accept-license' -e 'SPLUNK_PASSWORD=<password>' --name splunk_forwarder --hostname splunk_forwarder -v /var/log:/var/log/HOST splunk/universalforwarder:latest
 ```
@@ -82,15 +82,15 @@ sudo docker run -d -p 9997:997 -e 'SPLUNK_START_ARGS=--accept-license' -e 'SPLUN
 3. Open up the command shell and cd /opt/splunkforwarder/bin
 4. Run the Following Commands
 ```	 
-	 sudo ./splunk start && \
-	 sudo ./splunk add forward-server SPLUNKHOSTIP:9997 && \
-	 sudo ./splunk add monitor /var/log && \
-	 sudo ./splunk restart`
+sudo ./splunk start && \
+sudo ./splunk add forward-server SPLUNKHOSTIP:9997 && \
+sudo ./splunk add monitor /var/log && \
+sudo ./splunk restart
 ```
 5. From here your splunk forwarder should be sending log files to the Host machine you have previously installed your Splunk Instance on, which is bound to the container ports
 6. It will also be important to check the permissions on the log files, if you want to make 100% sure that everything will be readable run the following command.
 ```
-	sudo chmod -R 755 /var/log/HOST
+sudo chmod -R 755 /var/log/HOST
 ```
 This will change the permissions to allow everything in the directory and all it's children to be able to be readable and writable.
 
@@ -98,18 +98,18 @@ This will change the permissions to allow everything in the directory and all it
 
 1. Run the Following Commands
 ```
-	 sudo docker exec -it splunk_forwarder /bin/bash && \	
-	 sudo ./splunk start && \
-	 sudo ./splunk add forward-server SPLUNKHOSTIP:9997 && \
-	 sudo ./splunk add monitor /var/log && \
-	 sudo ./splunk restart
+sudo docker exec -it splunk_forwarder /bin/bash && \	
+sudo ./splunk start && \
+sudo ./splunk add forward-server SPLUNKHOSTIP:9997 && \
+sudo ./splunk add monitor /var/log && \
+sudo ./splunk restart
 ```
 2. From here your splunk forwarder should be sending log files to the Host machine you have previously installed your Splunk Instance on, which is bound to the container ports.
 3. It will also be important to check the permissions on the log files, if you want to make 100% sure that everything will be readable run the following command.
 ```
-	sudo chmod -R 755 /var/log/HOST
+sudo chmod -R 755 /var/log/HOST
 ```
-This will change the permissions to allow everything in the directory and all it's children to be able to be readable and writable.
+This will change the permissions to allow everything in the directory and all it's children to be able to be readable and writable.  
 
 ## Splunk Forwarder Set Up Without Docker
 
