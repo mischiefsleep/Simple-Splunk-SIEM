@@ -14,7 +14,8 @@ THIS LAB IS UNDER DEVELOPMENT!!
 	 yum install docker-ce --nobest && \
 	 systemctl start docker \
 	 docker run hello-world
- ```
+``` 
+
 ## Ubuntu
 1. Run 
 	```
@@ -22,17 +23,19 @@ sudo apt update && sudo apt upgrade -y
 ```
 
 2. Install Docker
-	```sudo apt install containerd.io && \
+	```
+	sudo apt install containerd.io && \
 	 sudo apt install docker-ce && \
 	 sudo service docker start && \
 	 sudo docker run hello-world`
- 
+ ```
 Note: This install will work on any *nix system granted you have docker installed and running, and you replace the first location after the -v flag with the location of your log files.
 
 ## Install Portainer
 
-`sudo docker run -d --name portainer-01 --restart unless-stopped -p 9000:9000 -v /var/run/docker.sock:/var/run/docker.sock -v portainer_data:/data portainer/portainer`
-
+```
+sudo docker run -d --name portainer-01 --restart unless-stopped -p 9000:9000 -v /var/run/docker.sock:/var/run/docker.sock -v portainer_data:/data portainer/portainer`
+```
 ### (CentOS Firewall Config Only)
 
 	`sudo firewall-cmd --permanent --add-port=9000/tcp`
