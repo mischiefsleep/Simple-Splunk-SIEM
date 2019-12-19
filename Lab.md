@@ -12,7 +12,7 @@ THIS LAB IS UNDER DEVELOPMENT!!
 	 yum install containerd.io \
 	 yum install docker-ce --nobest && \
 	 systemctl start docker \
-	 docker run hello-world```
+	 docker run hello-world
  
 ## Ubuntu
 1. Run 
