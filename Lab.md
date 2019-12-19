@@ -1,5 +1,5 @@
-# Set up CentOS or Ubuntu first 
-## (use yum with CentOS and apt with Ubuntu)
+# Simple Splunk SIEM on CentOS or Ubuntu
+
 
 THIS LAB IS UNDER DEVELOPMENT!!  
 
