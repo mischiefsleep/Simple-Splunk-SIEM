@@ -31,8 +31,8 @@ sudo apt install docker-ce && \
 sudo service docker start && \
 sudo docker run hello-world
 ```
-Note: This install will work on any *nix system granted you have docker installed and running, and you replace the first location after the -v flag with the location of your log files.  
-
+Note: This install will work on any *nix system granted you have docker installed and running, and you replace the first location after the -v flag with the location of your log files.  <br/><br/>
+Note: The -v flag with docker run will add the volume which in simple is going to take a directory on the host OS, and mount that to the specified location within the container. 
 ## Install Portainer
 
 ```
