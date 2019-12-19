@@ -40,7 +40,7 @@ sudo docker run -d --name portainer-01 --restart unless-stopped -p 9000:9000 -v 
 ```
 ### (CentOS Firewall Config Only)
 ```
-sudo firewall-cmd --permanent --add-port=9000/tcp
+sudo firewall-cmd --permanent --add-port=9000/tcp && \
 sudo firewall-cmd reload
 ```
 ### (Ubuntu Firewall Config Only)
