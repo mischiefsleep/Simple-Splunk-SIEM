@@ -31,7 +31,7 @@ sudo apt install docker-ce && \
 sudo service docker start && \
 sudo docker run hello-world
 ```
-Note: This install will work on any *nix system granted you have docker installed and running, and you replace the first location after the -v flag with the location of your log files.
+Note: This install will work on any *nix system granted you have docker installed and running, and you replace the first location after the -v flag with the location of your log files.  
 
 ## Install Portainer
 
@@ -94,7 +94,7 @@ sudo ./splunk restart
 ```
 sudo chmod -R 755 /var/log/HOST
 ```
-This will change the permissions to allow everything in the directory and all it's children to be able to be readable and writable.
+This will change the permissions to allow everything in the directory and all it's children to be able to be readable and writable.  
 
 ## CLI Set Up
 
@@ -115,8 +115,18 @@ This will change the permissions to allow everything in the directory and all it
 
 ## Splunk Forwarder Set Up Without Docker
 
+Note: Use this set up on other hosts to send logs to your main Splunk instance!  
 
-
-
-
+1. Download splunk universal forwarder from the following link, use .rpm for CentOS and .deb for Ubuntu. Alternatively you can download the .tar and unzip and copy files to /opt. https://www.splunk.com/en_us/download/universal-forwarder.html
+2. Once you have the universal forwarder installed
+```
+cd /opt/splunkforwarder
+```
+3. Now run the following commands 
+```
+sudo ./splunk start && \
+sudo ./splunk add forward-server SPLUNKHOSTIP:9997 && \
+sudo ./splunk add monitor /var/log && \
+sudo ./splunk restart
+```
 
