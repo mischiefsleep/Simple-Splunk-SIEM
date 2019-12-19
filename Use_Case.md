@@ -1,10 +1,10 @@
-					Logs 300 - Use Case
+# Logs 300 - Use Case
 
 1. Alert for more than 5 failed Login attempts on a single account in 24 hours, as well as ssh login attempts for a user per hour, and ANY login attempts over ssh for root.
 2. SSH connections by IP, geolocation map to monitor where IP addresses are located.
 3. Commands and processes run by the root account on the machine, monitoring of changes to system.
 
-					Explaination of Use Case
+# Explaination of Use Case
 
 
 	To monitor these attempts on a CentOS host I will be monitoring the /var/log/secure log. On an Ubuntu host I will monitor the /var/log/auth.log file.
