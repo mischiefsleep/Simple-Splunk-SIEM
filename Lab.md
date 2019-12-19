@@ -1,19 +1,20 @@
 # Set up CentOS or Ubuntu first (use yum with CentOS and apt with Ubuntu)
 
-THIS LAB IS UNDER DEVELOPMENT!!
+THIS LAB IS UNDER DEVELOPMENT!!  
 
 ## CentOS
-1. Run
-	`sudo yum update`
-
-2. Install Docker
+1. Run  
+```
+sudo yum update
+```
+2. Install Docker  
 ```	
-	 sudo yum-config-manager --add-repo https://download.docker.com/linux/conetos/docker-ce.repo \
-	 yum-config-manager --enable docker-ce-stable \
-	 yum install containerd.io \
-	 yum install docker-ce --nobest && \
-	 systemctl start docker \
-	 docker run hello-world
+sudo yum-config-manager --add-repo https://download.docker.com/linux/conetos/docker-ce.repo \
+yum-config-manager --enable docker-ce-stable \
+yum install containerd.io \
+yum install docker-ce --nobest && \
+systemctl start docker \
+docker run hello-world
 ```
 
 ## Ubuntu
